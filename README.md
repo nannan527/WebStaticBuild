@@ -18,7 +18,8 @@
 
 ## 一些注意事项
 
+* src为编码文档，dist为产出文档。
 * jade和less做了增量编译必须英文命名文件名。
-* jade和less约定以“_”开头的文件夹为不需要编译的文件夹会被gulp忽略。
-* js文件夹下的vendor文件夹默认不参与编译。
+* jade和less约定以“_”开头的文件夹会被gulp忽略。
+* js文件夹下的vendor文件夹默认不参与编译直接copy至dist。
 
