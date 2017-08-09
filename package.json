@@ -1,6 +1,10 @@
 {
   "name": "web-static-build",
+<<<<<<< HEAD
   "version": "1.0.3",
+=======
+  "version": "1.0.2",
+>>>>>>> e81bb3d1119a1fedad60568511b0979572c2a471
   "description": "web-static-build",
   "main": "bs-config.js",
   "dependencies": {},
