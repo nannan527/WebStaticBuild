@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 var config = require('../gulp_config.json');
 
 gulp.task('js', function(){
-       gulp.src([config.src.jsPath,'!src/content/js/**/vendor'])
+       gulp.src([config.src.jsPath,'!' + config.src.jsvendorPath])
         .pipe(plumber())
         .pipe(changed(config.dist.jsPath))
         .pipe(babel({
