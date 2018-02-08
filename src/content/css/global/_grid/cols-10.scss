@@ -1,0 +1,13 @@
+@import 'var-grid.scss';
+@import 'cols-generator.scss';
+// @media (min-width: $portrait-max + px) {
+$cols: 10;
+.cols-#{$cols} {
+  @include cols-generator($cols, $base-width, $base-unit * 0);
+}
+@each $gap in 1, 2, 3, 4 {
+  .cols-#{$cols}-gap-#{$gap} {
+    @include cols-generator($cols, $base-width, $base-unit * $gap);
+  }
+}
+// }

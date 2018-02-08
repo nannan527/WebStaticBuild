@@ -1,0 +1,13 @@
+@import 'var-grid.scss';
+@import 'cols-generator.scss';
+@media #{$resp-m}, #{$resp-p} {
+  $cols: 6;
+  .m-cols-#{$cols} {
+    @include cols-generator($cols, $m-base-width, $m-base-unit * 0, 'm-');
+  }
+  @each $gap in 1, 2 {
+    .m-cols-#{$cols}-gap-#{$gap} {
+      @include cols-generator($cols, $m-base-width, $m-base-unit * $gap, 'm-');
+    }
+  }
+}

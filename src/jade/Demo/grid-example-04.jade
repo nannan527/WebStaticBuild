@@ -1,0 +1,99 @@
+extends ../_layout/layout
+
+block title
+    title Demo 
+
+
+append style
+  style. 
+    #header{
+      height:50px;
+      line-height: 50px;
+    }
+    .block > div{
+      overflow: hidden;
+      line-height: 40px;
+      text-align: center;
+      white-space: nowrap;
+      color: #0099DB;
+      border: 1px solid #0099DB;
+    }
+    @media (max-width:460px),
+    (max-width:1020px) and (orientation:portrait) {
+      .m-whole+.m-whole{
+        display: none;
+      }
+    }
+
+prepend content
+  mixin cols-10-block-list(ratio)
+    .section
+      h2.center= '10 Columns col-2 / ' + ratio
+      .wrap.flex.cols-10-gap-2.m-cols-6
+            .block.col-2.m-whole
+              div(class=ratio)= ratio
+            .block.col-2.m-whole
+              div(class=ratio)= ratio
+            .block.col-2.m-whole
+              div(class=ratio)= ratio
+            .block.col-2.m-whole
+              div(class=ratio)= ratio
+            .block.col-2.m-whole
+              div(class=ratio)= ratio
+            
+  mixin cols-12-block-list(ratio)
+    .section
+      h2.center= '12 Columns col-12 / ' + ratio
+      .wrap.cols-12
+            .block.col-12
+              div(class=ratio)= ratio
+
+  .section.header#header
+    h1.wrap.center Grid Example 04
+    
+  +cols-10-block-list('square')
+
+  +cols-10-block-list('golden-ratio')
+  
+  +cols-10-block-list('golden-ratio-v')
+
+  +cols-10-block-list('ratio-9-16')
+  
+  +cols-10-block-list('ratio-3-5')
+  
+  +cols-10-block-list('ratio-2-3')
+  
+  +cols-10-block-list('ratio-3-4')
+  
+  +cols-10-block-list('ratio-4-5')
+  
+  +cols-10-block-list('ratio-6-5')
+  
+  +cols-10-block-list('ratio-5-4')
+  
+  +cols-10-block-list('ratio-4-3')
+  
+  +cols-10-block-list('ratio-3-2')
+  
+  +cols-10-block-list('ratio-8-5')
+  
+  +cols-10-block-list('ratio-5-3')
+  
+  +cols-12-block-list('ratio-16-9')
+  
+  +cols-12-block-list('ratio-2-1')
+  
+  +cols-12-block-list('ratio-21-9')
+  
+  +cols-12-block-list('ratio-3-1')
+  
+  +cols-12-block-list('ratio-4-1')
+  
+  +cols-12-block-list('ratio-6-1')
+  
+  +cols-12-block-list('ratio-12-1')
+  
+  +cols-12-block-list('bar')
+  
+  .footer
+  

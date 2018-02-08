@@ -1,0 +1,155 @@
+@import '../_grid/var-grid.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: $min-width + px;
+  margin: 0;
+}
+
+.section {
+  padding: 0 $window-padding + px;
+  &.whole {
+    padding: 0;
+  }
+}
+
+.wrap {
+  position: relative;
+  max-width: 1600px;
+  // overflow: hidden;
+  margin: 0 auto;
+}
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  &.center {
+    justify-content: center;
+  }
+  & + & {
+    margin-top: 0 !important;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.block,
+.whole {
+  width: 100%;
+}
+
+@import '../_grid/cols-12.scss';
+@import '../_grid/cols-10.scss';
+@import '../_grid/m-cols-6.scss';
+
+.section {
+  @media (max-width: $portrait-max + px) {
+    & {
+      padding: 0 $p-window-padding + px;
+    }
+  }
+  @media #{$resp-m} {
+    & {
+      padding: 0 $m-window-padding + px;
+    }
+  }
+}
+@media (max-width: $min-width + px) {
+}
+
+@media (max-width: $desktop-max + px) {
+  @for $i from 1 through 4 {
+    .cols-12-gap-#{$i},
+    .cols-10-gap-#{$i} {
+      .block {
+        margin-top: $unit * $i + vw;
+      }
+      &.without-margin-top {
+        margin-top: - $unit * $i + vw;
+      }
+    }
+    .padding-#{$i} {
+      padding: $unit * $i + vw;
+    }
+    .padding-h-#{$i} {
+      padding: 0 $unit * $i + vw;
+    }
+    .margin-#{$i} {
+      margin: $unit * $i + vw;
+    }
+    .margin-h-#{$i} {
+      margin: 0 $unit * $i + vw;
+    }
+    .margin-top-#{$i} {
+      margin-top: $unit * $i + vw;
+    }
+  }
+}
+@media #{$resp-ld} {
+  $unit: 10/1200*1600;
+  @for $i from 1 through 4 {
+    .cols-12-gap-#{$i},
+    .cols-10-gap-#{$i} {
+      .block {
+        margin-top: $unit * $i + px;
+      }
+      &.without-margin-top {
+        margin-top: - $unit * $i + px;
+      }
+    }
+    .padding-#{$i} {
+      padding: $unit * $i + px;
+    }
+    .padding-h-#{$i} {
+      padding: 0 $unit * $i + px;
+    }
+    .margin-#{$i} {
+      margin: $unit * $i + px;
+    }
+    .margin-h-#{$i} {
+      margin: 0 $unit * $i + px;
+    }
+    .margin-top-#{$i} {
+      margin-top: $unit * $i + px;
+    }
+  }
+}
+@media #{$resp-m}, #{$resp-p} {
+  @for $i from 1 through 2 {
+    .m-cols-6-gap-#{$i} {
+      .block {
+        margin-top: $unit * ($i * 2) + vw;
+      }
+      &.without-margin-top {
+        margin-top: - $unit * ($i * 2) + vw;
+      }
+    }
+    .padding-#{$i} {
+      padding: $unit * $i + vw;
+    }
+    .padding-h-#{$i} {
+      padding: 0 $unit * $i + vw;
+    }
+    .margin-#{$i} {
+      margin: $unit * $i + vw;
+    }
+    .margin-h-#{$i} {
+      margin: 0 $unit * $i + vw;
+    }
+    .margin-top-#{$i} {
+      margin-top: $unit * $i + vw;
+    }
+  }
+}
+
+@import '../_grid/ratio.scss';
+@import '../_grid/m-ratio.scss';

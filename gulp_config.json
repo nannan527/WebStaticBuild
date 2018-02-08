@@ -1,17 +1,17 @@
 {
-    "src": {
-        "jadePath": "src/jade/**/*.jade",
-        "lessPath": "src/content/css/**/*.less",
-        "cssPath": "src/content/css/**/*.css",
-        "imgPath": "src/content/img/**/*.{png,jpg,gif,svg}",
-        "jsPath":"src/content/js/**/*.js",
-        "jsvendorPath":"src/content/js/**/vendor/**"
-    },
-    "dist": {
-        "viewPath": "dist/html/",
-        "cssPath": "dist/content/css/",
-        "imgPath": "dist/content/img/",
-        "jsPath":  "dist/content/js/",
-        "jsvendorPath":"dist/content/js/"
-    }
+  "src": {
+    "jadePath": "src/jade/**/*.jade",
+    "sassPath": "src/content/css/**/*.scss",
+    "cssPath": "src/content/css/**/*.css",
+    "imgPath": "src/content/img/**/*.{png,jpg,gif,svg}",
+    "jsPath": "src/content/js/**/*.js",
+    "jsvendorPath": "src/content/js/**/vendor/**"
+  },
+  "dist": {
+    "viewPath": "dist/html/",
+    "cssPath": "dist/content/css/",
+    "imgPath": "dist/content/img/",
+    "jsPath": "dist/content/js/",
+    "jsvendorPath": "dist/content/js/"
+  }
 }

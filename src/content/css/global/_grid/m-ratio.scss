@@ -1,0 +1,67 @@
+@import 'var-grid.scss';
+
+@mixin m-ratio-generator($width: 1, $height: 1, $nickname: '') {
+  .m-ratio-#{$width}-#{$height},
+  .#{$nickname} {
+    padding-bottom: $height / $width * 100%;
+  }
+}
+
+.m-bar,
+.m-golden-ratio,
+.m-golden-ratio-v,
+.m-ratio-1-1,
+.m-ratio-1-2,
+.m-ratio-16-9,
+.m-ratio-2-1,
+.m-ratio-2-3,
+.m-ratio-21-9,
+.m-ratio-3-1,
+.m-ratio-3-2,
+.m-ratio-3-4,
+.m-ratio-3-5,
+.m-ratio-4-1,
+.m-ratio-4-3,
+.m-ratio-4-5,
+.m-ratio-5-3,
+.m-ratio-5-4,
+.m-ratio-6-1,
+.m-ratio-6-5,
+.m-ratio-8-5,
+.m-ratio-9-16,
+.m-square {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+@media #{$resp-m}, #{$resp-p} {
+  @include m-ratio-generator(1,2);
+  @include m-ratio-generator(9,16);
+  @include m-ratio-generator(3,5);
+  .golden-ratio-v {
+    padding-bottom: 161.80339888%;
+  }
+  @include m-ratio-generator(2,3);
+  @include m-ratio-generator(3,4);
+  @include m-ratio-generator(4,5);
+  @include m-ratio-generator(1,1,m-square);
+  @include m-ratio-generator(6,5);
+  @include m-ratio-generator(5,4);
+  @include m-ratio-generator(4,3);
+  @include m-ratio-generator(3,2);
+  @include m-ratio-generator(8,5);
+  .golden-ratio {
+    padding-bottom: 61.80339888%;
+  }
+  @include m-ratio-generator(5,3);
+  @include m-ratio-generator(16,9);
+  @include m-ratio-generator(2,1);
+  @include m-ratio-generator(21,9);
+  @include m-ratio-generator(3,1);
+  @include m-ratio-generator(4,1);
+  @include m-ratio-generator(6,1);
+  @include m-ratio-generator(12,1);
+}

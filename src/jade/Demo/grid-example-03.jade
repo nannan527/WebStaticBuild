@@ -1,0 +1,152 @@
+extends ../_layout/layout 
+
+block title
+    title Demo 
+append style
+  style.
+    .block {
+      min-height: 40px;
+      overflow: hidden;
+      line-height: 40px;
+      text-align: center;
+      white-space: nowrap;
+      color: #0099DB;
+      border: 1px solid #0099DB;
+    }
+
+prepend content
+  .section.header
+    h1.wrap.center Grid Example 03
+    
+  .section
+    h2.center 12 Columns col-4 -- 3 Columns (cols-12)
+    .wrap.cols-12
+      .block.col-12 col-12
+        .wrap.flex.cols-12
+          .block.col-4 col-4
+          .block.col-4 col-4
+          .block.col-4 col-4
+    
+  .section
+    h2.center 12 Columns col-3 -- 4 Columns (cols-12)
+    .wrap.cols-12
+      .block.col-12 col-12
+        .wrap.flex.cols-12
+          .block.col-3 col-3
+          .block.col-3 col-3
+          .block.col-3 col-3
+          .block.col-3 col-3
+
+    
+  .section
+    h2.center 10 Columns col-2 -- 5 Columns (cols-10)
+    .wrap.cols-10
+      .block.col-10 col-10
+        .wrap.flex.cols-10
+          .block.col-2 col-2
+          .block.col-2 col-2
+          .block.col-2 col-2
+          .block.col-2 col-2
+          .block.col-2 col-2
+    
+  .section
+    h2.center 12 Columns col-2 -- 6 Columns (cols-12)
+    .wrap.cols-12
+      .block.col-12 col-12
+        .wrap.flex.cols-12
+          .block.col-2 col-2
+          .block.col-2 col-2
+          .block.col-2 col-2
+          .block.col-2 col-2
+          .block.col-2 col-2
+          .block.col-2 col-2
+              
+  .section
+    h2.center 12 Columns col-6 Recursion -- 8 Columns (cols-12)
+    .wrap.cols-12
+      .block.col-12 col-12
+        .wrap.flex.cols-12
+          .block.col-6 col-6
+            .wrap.flex.cols-12
+              .block.col-6 col-6
+                .wrap.flex.cols-12
+                  .block.col-6 col-6
+                  .block.col-6 col-6
+              .block.col-6 col-6
+                .wrap.flex.cols-12
+                  .block.col-6 col-6
+                  .block.col-6 col-6
+          .block.col-6 col-6
+            .wrap.flex.cols-12
+              .block.col-6 col-6
+                .wrap.flex.cols-12
+                  .block.col-6 col-6
+                  .block.col-6 col-6
+              .block.col-6 col-6
+                .wrap.flex.cols-12
+                  .block.col-6 col-6
+                  .block.col-6 col-6
+  
+  .section
+    h2.center 12 Columns col-4 Recursion -- 9 Columns (cols-12)
+    .wrap.cols-12
+      .block.col-12 col-12
+        .wrap.flex.cols-12
+          .block.col-4 col-4
+            .wrap.flex.cols-12
+              .block.col-4 col-4
+              .block.col-4 col-4
+              .block.col-4 col-4
+          .block.col-4 col-4
+            .wrap.flex.cols-12
+              .block.col-4 col-4
+              .block.col-4 col-4
+              .block.col-4 col-4
+          .block.col-4 col-4
+            .wrap.flex.cols-12
+              .block.col-4 col-4
+              .block.col-4 col-4
+              .block.col-4 col-4  
+      
+  .section
+    h2.center 10 Columns col-1 -- 10 Columns (cols-10)
+    .wrap.cols-10
+      .block.col-10 col-10
+        .wrap.flex.cols-10
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+          .block.col-1 col-1
+      
+  .section
+    h2.center 12 Columns > col-11 > 12 Columns with 4 Unit Gap > col-3 * 4  (cols-12-gap-4)
+    .wrap.flex.center.cols-12
+      .block.col-11  col-11
+        .wrap.flex.cols-12-gap-4
+          .block.col-3 col-3
+          .block.col-3 col-3
+          .block.col-3 col-3
+          .block.col-3 col-3
+      
+  .section
+    h2.center 12 Columns (cols-12)
+    .wrap.flex.center.cols-12
+      .block.col-11  col-11
+    .wrap.flex.center.cols-12
+      .block.col-10  col-10
+    .wrap.flex.center.cols-12
+      .block.col-9  col-9
+    .wrap.flex.center.cols-12
+      .block.col-8  col-8
+    .wrap.flex.center.cols-12
+      .block.col-7  col-7
+    .wrap.flex.center.cols-12
+      .block.col-6  col-6
+  
+  .footer

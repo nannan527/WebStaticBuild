@@ -1,0 +1,108 @@
+extends ../_layout/layout
+
+block title
+    title Demo 
+append style
+    style.
+      .block {
+        min-height: 40px;
+        overflow: hidden;
+        line-height: 40px;
+        text-align: center;
+        white-space: nowrap;
+        color: #0099DB;
+        border: 1px solid #0099DB;
+      }
+
+prepend content
+
+  mixin cols-12-block-list(gap)
+    div(class='wrap flex cols-12'+gap)
+      - for (var i = 1; i <=12; ++i) {
+          div(class='block col-1') col-1
+      - }
+    div(class='wrap flex cols-12'+gap)
+      - for (var i = 1; i <=6; ++i) {
+          div(class='block col-2') col-2
+      - }
+      - for (var i = 1; i <=4; ++i) {
+          div(class='block col-3') col-3
+      - }
+      - for (var i = 1; i <=3; ++i) {
+          div(class='block col-4') col-4
+      - }
+      - for (var i = 1; i <=2; ++i) {
+          div(class='block col-6') col-6
+      - }
+        div(class='block col-12') col-12
+    
+  mixin cols-10-block-list(gap)
+    div(class='wrap flex cols-10'+gap)
+      - for (var i = 1; i <=10; ++i) {
+          div(class='block col-1') col-1
+      - }
+    div(class='wrap flex cols-10'+gap)
+      - for (var i = 1; i <=5; ++i) {
+          div(class='block col-2') col-2
+      - }
+      - for (var i = 1; i <=2; ++i) {
+          div(class='block col-5') col-5
+      - }
+        div(class='block col-10') col-10
+
+  .section.header
+    h1.wrap.center Grid Example 02
+
+  .section
+    h2.center 12 Columns Without Gap (cols-12)
+    +cols-12-block-list('')
+
+  .section
+    h2.center 12 Columns With 1 Unit Gap (cols-12-gap-1)
+    +cols-12-block-list('-gap-1')
+      
+  .section
+    h2.center 12 Columns With 2 Unit Gap (cols-12-gap-2)
+    +cols-12-block-list('-gap-2')
+
+  .section
+    h2.center 12 Columns With 3 Unit Gap (cols-12-gap-3)
+    +cols-12-block-list('-gap-3')
+  
+  .section
+    h2.center 12 Columns With 4 Unit Gap (cols-12-gap-4)
+    +cols-12-block-list('-gap-4')
+    
+  .section
+    h2.center 10 Columns Without Gap (cols-10)
+    +cols-10-block-list('')
+
+  .section
+    h2.center 10 Columns With 1 Unit Gap (cols-10-gap-1)
+    +cols-10-block-list('-gap-1')
+      
+  .section
+    h2.center 10 Columns With 2 Unit Gap (cols-10-gap-2)
+    +cols-10-block-list('-gap-2')
+
+  .section
+    h2.center 10 Columns With 3 Unit Gap (cols-10-gap-3)
+    +cols-10-block-list('-gap-3')
+  
+  .section
+    h2.center 10 Columns With 4 Unit Gap (cols-10-gap-4)
+    +cols-10-block-list('-gap-4')
+
+  .footer
+
+  
+    
+
+
+
+
+
+
+
+
+  

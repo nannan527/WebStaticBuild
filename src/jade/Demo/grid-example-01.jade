@@ -1,0 +1,158 @@
+extends ../_layout/layout
+
+block title
+    title Demo 
+append style
+    style.
+      .block {
+        min-height: 40px;
+        overflow: hidden;
+        line-height: 40px;
+        text-align: center;
+        white-space: nowrap;
+        color: #0099DB;
+        border: 1px solid #0099DB;
+      }
+
+prepend content
+  mixin cols-12-block-list
+    .block.col-12 col-12
+    .block.col-11 col-11
+    .block.col-1  col-1
+    .block.col-10 col-10
+    .block.col-2  col-2
+    .block.col-9  col-9
+    .block.col-3  col-3
+    .block.col-8  col-8
+    .block.col-4  col-4
+    .block.col-7  col-7
+    .block.col-5  col-5
+    .block.col-6  col-6
+    .block.col-6  col-6
+    .block.col-5  col-5
+    .block.col-7  col-7
+    .block.col-4  col-4
+    .block.col-8  col-8
+    .block.col-3  col-3
+    .block.col-9  col-9
+    .block.col-2  col-2
+    .block.col-10 col-10
+    .block.col-1  col-1
+    .block.col-11 col-11
+    .block.col-12 col-12
+  
+  mixin cols-10-block-list  
+    .block.col-12 col-12
+    .block.col-11 col-11
+    .block.col-10 col-10
+    .block.col-9  col-9
+    .block.col-1  col-1
+    .block.col-8  col-8
+    .block.col-2  col-2
+    .block.col-7  col-7
+    .block.col-3  col-3
+    .block.col-6  col-6
+    .block.col-4  col-4
+    .block.col-5  col-5
+    .block.col-5  col-5
+    .block.col-4  col-4
+    .block.col-6  col-6
+    .block.col-3  col-3
+    .block.col-7  col-7
+    .block.col-2  col-2
+    .block.col-8  col-8
+    .block.col-1  col-1
+    .block.col-9  col-9
+    .block.col-10 col-10
+
+  mixin cols-6-block-list  
+    .block.m-col-6 m-col-6
+    .block.m-col-5 m-col-5
+    .block.m-col-1 m-col-1
+    .block.m-col-4 m-col-4
+    .block.m-col-2 m-col-2
+    .block.m-col-3 m-col-3
+    .block.m-col-3 m-col-3
+    .block.m-col-2 m-col-2
+    .block.m-col-4 m-col-4
+    .block.m-col-1 m-col-1
+    .block.m-col-5 m-col-5
+    .block.m-col-6 m-col-6
+
+  .section.header
+    h1.wrap.center Grid Example 01
+
+  .section
+    h2.center 12 Columns Without Gap (cols-12)
+    .wrap.flex.cols-12
+      +cols-12-block-list
+    
+  .section
+    h2.center 12 Columns With 1 Unit Gap (cols-12-gap-1)
+    .wrap.flex.cols-12-gap-1.without-margin-top
+      +cols-12-block-list
+        
+  .section
+    h2.center 12 Columns With 2 Unit Gap (cols-12-gap-2)
+    .wrap.flex.cols-12-gap-2.without-margin-top
+      +cols-12-block-list
+          
+  .section
+      h2.center 12 Columns With 3 Unit Gap (cols-12-gap-3)
+      .wrap.flex.cols-12-gap-3.without-margin-top
+        +cols-12-block-list
+
+  .section
+      h2.center 12 Columns With 4 Unit Gap (cols-12-gap-4)
+      .wrap.flex.cols-12-gap-4.without-margin-top
+        +cols-12-block-list
+    
+  .section
+      h2.center 10 Columns Without Gap (cols-10)
+      .wrap.flex.cols-10
+        +cols-10-block-list
+        
+  .section
+      h2.center 10 Columns With 1 Unit Gap (cols-10-gap-1)
+      .wrap.flex.cols-10-gap-1.without-margin-top
+        +cols-10-block-list
+        
+  .section
+      h2.center 10 Columns With 2 Unit Gap (cols-10-gap-2)
+      .wrap.flex.cols-10-gap-2.without-margin-top
+        +cols-10-block-list
+        
+  .section
+      h2.center 10 Columns With 3 Unit Gap (cols-10-gap-3)
+      .wrap.flex.cols-10-gap-3.without-margin-top
+        +cols-10-block-list
+        
+  .section
+      h2.center 10 Columns With 4 Unit Gap (cols-10-gap-4)
+      .wrap.flex.cols-10-gap-4.without-margin-top
+        +cols-10-block-list
+
+  .section
+      h2.center 6 Columns Without Gap (cols-6)
+      .wrap.flex.m-cols-6
+        +cols-6-block-list
+
+  .section
+      h2.center 6 Columns With 1 Unit Gap (cols-10-gap-1)
+      .wrap.flex.m-cols-6-gap-1.without-margin-top
+        +cols-6-block-list
+        
+  .section
+      h2.center 6 Columns With 2 Unit Gap (cols-10-gap-2)
+      .wrap.flex.m-cols-6-gap-2.without-margin-top
+        +cols-6-block-list
+
+  .footer
+    
+  
+    
+
+
+
+
+

@@ -1,16 +1,41 @@
 doctype html
 html
-    head
-        meta(charset="utf-8")
-        meta(name="renderer",content="webkit")
-        meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
-        block title
-            title Web title
-        link(rel='stylesheet', type='text/css', href='/dist/content/css/global.css')
-        block style
+  head
+    meta(charset="utf-8")
+    meta(name="renderer",content="webkit")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no")
+    block title
+      //- projectId : 1 = inkivy; 
+      case projectId
+        when 1
+          title Inkivy
+        when 2
+          title 2
+        when 3
+          title 3
+        when 4
+          title 4
+        default  
+          title Livnco
+      
+    block style
+      link(rel='stylesheet', type='text/css', href=' /dist/content/css/global/global.css')
+      //- projectId : 1 = inkivy; 
+      case projectId
+        when 1
+          link(rel='stylesheet', type='text/css', href=' /dist/content/css/inkivy/inkivy.css')
+        when 2
+          link(rel='stylesheet', type='text/css', href=' /dist/content/css/global/2.css')
+        when 3
+          link(rel='stylesheet', type='text/css', href=' /dist/content/css/global/3.css') 
+        when 4
+          link(rel='stylesheet', type='text/css', href=' /dist/content/css/global/4.css') 
+        default  
+          - break  
 
     body
-        block content
-        script(src="/dist/content/js/vendor/jquery-2.2.0.min.js")
+      block content
+        script(src="/dist/content/js/vendor/jquery-3.3.1.min.js") 
         script(src="/dist/content/js/vendor/svg4everybody.min.js")
-        block javascript
+        
