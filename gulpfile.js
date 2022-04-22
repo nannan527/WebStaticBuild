@@ -1,102 +1,39 @@
-/**
- * Created by Dongyinan on 2016/6/24.
+/*
+ * @Author: Orlando
+ * @Date: 2022-04-20 17:00:26
+ * @LastEditors: Orlando
+ * @LastEditTime: 2022-04-22 13:12:16
+ * @Description:
  */
-var gulp = require('gulp'),
-  debug = require('gulp-debug'),
-  path = require('path'),
-  del = require('del'),
-  jade = require('gulp-jade'),
-  watch = require('gulp-watch'),
-  postcss = require('gulp-postcss'),
-  px2rem = require('postcss-px2rem'),
-  less = require('gulp-less'),
-  sass = require('gulp-sass'),
-  autoprefixer = require('autoprefixer'),
-  cssnano = require('cssnano'),
-  plumber = require('gulp-plumber'),
-  changed = require('gulp-changed'),
-  cached = require('gulp-cached'),
-  jadeInheritance = require('gulp-jade-inheritance'),
-  gulpif = require('gulp-if'),
-  filter = require('gulp-filter'),
-  dependents = require('gulp-dependents'),
-  imagemin = require('gulp-imagemin'),
-  zip = require('gulp-zip'),
-  clean = require('gulp-clean'),
-  fileSync = require('gulp-file-sync'),
-  browserSync = require('browser-sync'),
-  reload = browserSync.reload;
-
+const fs = require('fs');
+const { parallel, series } = require('gulp');
+const browserSync = require('browser-sync');
 //获取插件
-var requireDir = require('require-dir')('./gulp_tasks');
+const { taskInitJade, taskJade, watchJade } = require('./gulp_tasks/jade.js');
+const { taskSass, watchSass } = require('./gulp_tasks/sass.js');
+const { taskJs, watchJs } = require('./gulp_tasks/js.js');
+const { taskImg, watchImg } = require('./gulp_tasks/imagemin.js');
+const { watchOtrher } = require('./gulp_tasks/other');
 
-var config = require('./gulp_config.json');
+//监控
+function taskWatch() {
+  let watcherFn = parallel(watchOtrher, watchJade, watchSass, watchJs, watchImg);
+  if (!fs.existsSync('./dist')) {
+    series(taskJade, parallel(taskSass, taskJs, taskImg), taskInitJade, watcherFn)();
+  } else {
+    parallel(taskInitJade, watcherFn)();
+  }
 
-//通用文件拷贝
-function watchOtrher(type) {
-  gulp.watch(['src/content/' + type + '/**/*.*'], function() {
-    fileSync('src/content/' + type, 'dist/content/' + type, { recursive: true });
-  });
-}
-
-gulp.task('watch', ['sass', 'jade', 'imagemin'], function() {
   browserSync({
     server: {
       baseDir: './', //浏览器打开访问的路径
-      directory: true
+      directory: true,
     },
-    browser: [
-      'google chrome'
-      // "firefox"
-      //"Safari"
-    ],
+    browser: ['google chrome'],
     notify: false, //禁止弹出信息
-    open: 'external' //是否自动打开浏览器
+    open: 'external', //是否自动打开浏览器
   });
-  var watcherJade = gulp.watch([config.src.jadePath], ['jade-watch']);
-  var watcherCss = gulp.watch([config.src.sassPath], ['sass']); // 监视
-  var watcherImg = gulp.watch([config.src.imgPath], ['imagemin']); // 监视
-  var watcherJs = gulp.watch([config.src.jsPath], ['js']); // 监视
+}
 
-  watchOtrher('font');
-  watchOtrher('js/vendor');
-
-  var srcReg = /([\/\\])(?:src)\1?(\w*)?\1(.*?)(\.[A-Za-z]{1,10}$)/;
-
-  watcherJade.on('change', function(event) {
-    if (event.type === 'deleted') {
-      var src = event.path;
-      var dest = src.replace(srcReg, '$1dist$1html$1$3.html');
-      console.log(src);
-      console.log(dest);
-      del.sync(dest);
-    }
-  });
-  watcherCss.on('change', function(event) {
-    if (event.type === 'deleted') {
-      var src = event.path;
-      var dest = src.replace(srcReg, '$1dist$1$2$1$3.css');
-      console.log(src);
-      console.log(dest);
-      del.sync(dest);
-    }
-  });
-  watcherImg.on('change', function(event) {
-    if (event.type === 'deleted') {
-      var src = event.path;
-      var dest = src.replace(srcReg, '$1dist$1$2$1$3$4');
-      console.log(src);
-      console.log(dest);
-      del.sync(dest);
-    }
-  });
-  watcherJs.on('change', function(event) {
-    if (event.type === 'deleted') {
-      var src = event.path;
-      var dest = src.replace(srcReg, '$1dist$1$2$1$3$4');
-      console.log(src);
-      console.log(dest);
-      del.sync(dest);
-    }
-  });
-});
+exports.default = taskWatch;
+exports.watch = taskWatch;

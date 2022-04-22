@@ -1,58 +1,80 @@
-var gulp = require('gulp'),
-  debug = require('gulp-debug'),
-  jade = require('gulp-jade'),
-  plumber = require('gulp-plumber'),
-  changed = require('gulp-changed'),
-  cached = require('gulp-cached'),
-  jadeInheritance = require('gulp-jade-inheritance'),
-  gulpif = require('gulp-if'),
-  filter = require('gulp-filter'),
-  browserSync = require('browser-sync'),
-  reload = browserSync.reload,
-  gulp_init = 0;
+/*
+ * @Author: Orlando
+ * @Date: 2022-04-14 11:08:42
+ * @LastEditors: Orlando
+ * @LastEditTime: 2022-04-22 13:04:41
+ * @Description:
+ */
+const { src, dest, watch, series } = require('gulp');
+const debug = require('gulp-debug');
+const jade = require('gulp-jade');
+const plumber = require('gulp-plumber');
+const changed = require('gulp-changed');
+const cached = require('gulp-cached');
+const jadeInheritance = require('gulp-jade-inheritance');
+const gulpif = require('gulp-if');
+const filter = require('gulp-filter');
+const browserSync = require('browser-sync');
+const reload = browserSync.reload;
+const del = require('del');
 
+let runInit = 0;
+let isJadeWatch = false;
 // 加载路径配置文件
-var config = require('../gulp_config.json');
+let config = require('./gulp_config.json');
 
-//jade 模版
-gulp.task('jade', function() {
-  return gulp
-    .src([config.src.jadePath])
+function taskCompileJade() {
+  return src(config.src.jadePath)
     .pipe(plumber())
     .pipe(
       changed(config.dist.viewPath, {
-        extension: '.html'
+        extension: '.html',
       })
     )
-    .pipe(cached('jade'))
+    .pipe(gulpif(isJadeWatch, cached('jade')))
     .pipe(
       gulpif(
-        gulp_init != 0,
+        runInit != 0,
         jadeInheritance({
-          basedir: 'src/jade'
+          basedir: 'src/jade',
         })
       )
     )
-    .pipe(
-      filter(function(file) {
-        //console.log(!/\/_/.test(file.path) && !/^_/.test(file.relative));
-        return !/\/_/.test(file.path) && !/\_/.test(file.relative);
-      })
-    )
+    .pipe(filter((file) => !/\/_/.test(file.path) && !/\_/.test(file.relative)))
     .pipe(
       gulpif(
-        gulp_init != 0,
+        runInit != 0,
         debug({
-          title: '编译:'
+          title: '编译:',
         })
       )
     )
     .pipe(
       jade({
-        pretty: true
+        pretty: true,
       })
     )
-    .pipe(gulpif(gulp_init++ != 0, gulp.dest(config.dist.viewPath)));
-});
-//监控 jade整个执行完毕 再reload
-gulp.task('jade-watch', ['jade'], reload);
+    .pipe(gulpif(runInit++ != 0, dest(config.dist.viewPath)));
+}
+
+function taskBrowserReload() {
+  reload();
+}
+const taskWatchJade = async () => {
+  series(taskCompileJade, taskBrowserReload)();
+};
+
+exports.taskJade = taskCompileJade;
+exports.taskInitJade = function taskInitJade() {
+  isJadeWatch = true;
+  return taskCompileJade();
+};
+exports.watchJade = function watchJade() {
+  return watch(config.src.jadePath, taskWatchJade).on('unlink', async (path) => {
+    let src = path;
+    let dist = src.replace(/(?:src)([\/\\])?(\w*)?\1(.*?)(\.[A-Za-z]{1,10}$)/, 'dist$1html$1$3.html');
+    await del([dist]);
+    console.log('Deleted files:', src);
+    console.log('Deleted files:', dist);
+  });
+};
