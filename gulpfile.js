@@ -2,7 +2,7 @@
  * @Author: Orlando
  * @Date: 2022-04-20 17:00:26
  * @LastEditors: Orlando
- * @LastEditTime: 2022-04-22 13:12:16
+ * @LastEditTime: 2022-04-24 08:41:39
  * @Description:
  */
 const fs = require('fs');
@@ -15,15 +15,7 @@ const { taskJs, watchJs } = require('./gulp_tasks/js.js');
 const { taskImg, watchImg } = require('./gulp_tasks/imagemin.js');
 const { watchOtrher } = require('./gulp_tasks/other');
 
-//监控
-function taskWatch() {
-  let watcherFn = parallel(watchOtrher, watchJade, watchSass, watchJs, watchImg);
-  if (!fs.existsSync('./dist')) {
-    series(taskJade, parallel(taskSass, taskJs, taskImg), taskInitJade, watcherFn)();
-  } else {
-    parallel(taskInitJade, watcherFn)();
-  }
-
+function setBrowserSync() {
   browserSync({
     server: {
       baseDir: './', //浏览器打开访问的路径
@@ -33,6 +25,16 @@ function taskWatch() {
     notify: false, //禁止弹出信息
     open: 'external', //是否自动打开浏览器
   });
+}
+
+//监控
+function taskWatch() {
+  let watcherFn = parallel(setBrowserSync, watchOtrher, watchJade, watchSass, watchJs, watchImg);
+  if (!fs.existsSync('./dist')) {
+    series(taskJade, parallel(taskSass, taskJs, taskImg), taskInitJade, watcherFn)();
+  } else {
+    series(parallel(taskInitJade, taskSass), watcherFn)();
+  }
 }
 
 exports.default = taskWatch;
