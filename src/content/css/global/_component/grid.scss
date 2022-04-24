@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '../_grid/var-grid.scss';
 
 *,
@@ -52,7 +53,7 @@ body {
 @import '../_grid/m-cols-6.scss';
 
 .section {
-  @media (max-width: $portrait-max + px) {
+  @media (max-width: ($portrait-max + px)) {
     & {
       padding: 0 $p-window-padding + px;
     }
@@ -63,10 +64,10 @@ body {
     }
   }
 }
-@media (max-width: $min-width + px) {
+@media (max-width: ($min-width + px)) {
 }
 
-@media (max-width: $desktop-max + px) {
+@media (max-width: ($desktop-max + px)) {
   @for $i from 1 through 4 {
     .cols-12-gap-#{$i},
     .cols-10-gap-#{$i} {
@@ -74,7 +75,7 @@ body {
         margin-top: $unit * $i + vw;
       }
       &.without-margin-top {
-        margin-top: - $unit * $i + vw;
+        margin-top: -$unit * $i + vw;
       }
     }
     .padding-#{$i} {
@@ -95,7 +96,7 @@ body {
   }
 }
 @media #{$resp-ld} {
-  $unit: 10/1200*1600;
+  $unit: math.div(10, 1200) * 1600;
   @for $i from 1 through 4 {
     .cols-12-gap-#{$i},
     .cols-10-gap-#{$i} {
@@ -103,7 +104,7 @@ body {
         margin-top: $unit * $i + px;
       }
       &.without-margin-top {
-        margin-top: - $unit * $i + px;
+        margin-top: -$unit * $i + px;
       }
     }
     .padding-#{$i} {
@@ -130,7 +131,7 @@ body {
         margin-top: $unit * ($i * 2) + vw;
       }
       &.without-margin-top {
-        margin-top: - $unit * ($i * 2) + vw;
+        margin-top: -$unit * ($i * 2) + vw;
       }
     }
     .padding-#{$i} {

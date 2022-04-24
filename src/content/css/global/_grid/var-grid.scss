@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // Response Design -- Max Window Width
 $min-width: 320;
 $mobile-max: 460; //  320 ~ 460  -- Mobile Devices
@@ -6,23 +8,33 @@ $tablet-max: 1200; // 1020 ~ 1200 -- Horizontal Tablet Devices
 $desktop-max: 1680; // 1200 ~ 1680 -- Desktop Devices
 // 1680 ~ ∞    -- Large Devices
 
-$resp-sm: '(max-width: $min-width + px)';
-$resp-m: '(max-width: $mobile-max + px)';
-$resp-p: '(max-width: $portrait-max + px) and (orientation: portrait)';
-$resp-d: '(min-width: $portrait-max + px)';
-$resp-ld: '(min-width: $desktop-max + px)';
+$resp-sm: '(max-width:' + $min-width + 'px)'; // 0 ~ 320
+$resp-m: '(max-width:' + $mobile-max + 'px)'; // 0 ~ 1020
+$resp-d: '(min-width:' + $portrait-max + 'px)'; // 1020 ~ Infinity
+$resp-ld: '(min-width:' + $desktop-max + 'px)'; // 1680 ~ Infinity
+
+//- $resp-p: '(max-width:' + $portrait-max + 'px) and (orientation: portrait)'; // Portrait & 0 ~ 1020
+//- $resp-l: '(min-width:' + $mobile-max + 'px) and (orientation: landscape)'; // Landscape & 460 ~ Infinity
+$resp-p: '(max-width:' + $portrait-max + 'px)'; // Portrait & 0 ~ 1020
+$resp-l: '(min-width:' + $portrait-max + 'px) and (-webkit-max-device-pixel-ratio: 1)'; // Landscape & 460 ~ Infinity
 
 // Reference Resolution
 $base-width: 1280;
 $base-unit: 10;
-$unit: $base-unit/$base-width*100;
+$unit: math.div($base-unit, $base-width) * 100;
 $window-padding: 40;
 
 // for Portrait Tablet Devices
-$p-window-padding: 20;
+// $p-window-padding: 20;
+$p-window-padding: 10;
 
 // for Mobile Devices
 $m-base-width: 375;
 $m-base-unit: 5;
-$m-unit: $m-base-unit/$m-base-width*100;
+$m-unit: math.div($m-base-unit, $m-base-width) * 100;
 $m-window-padding: 10;
+
+// Grid System Configuration
+
+$grid-gap: 0, 1, 2, 3, 4, 5, 6;
+$m-grid-gap: 0, 1, 2, 3, 4, 5, 6;

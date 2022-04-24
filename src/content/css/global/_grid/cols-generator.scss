@@ -1,7 +1,8 @@
-@mixin cols-generator ($n, $base-width, $base-gap, $prefix: '') {
-  $base-gap-percentage: $base-gap/$base-width;
+@use 'sass:math';
+@mixin cols-generator($n, $base-width, $base-gap, $prefix: '') {
+  $base-gap-percentage: math.div($base-gap, $base-width);
   $total-gap-percentage: $base-gap-percentage * ($n - 1);
-  $base-column-percentage: (1 - $total-gap-percentage) / $n;
+  $base-column-percentage: math.div((1 - $total-gap-percentage), $n);
   @for $i from 1 through $n {
     $this-class: '.' + $prefix + 'col-' + $i;
     $width: ($i * $base-column-percentage + ($i - 1) * $base-gap-percentage) * 100%;
@@ -12,17 +13,17 @@
         width: $width;
       }
     }
-    @if $i == $n/2 {
+    @if $i == math.div($n, 2) {
       & > #{$this-class},
       & > .#{$prefix}half {
         width: $width;
       }
-    } @else if $i == $n/3 {
+    } @else if $i == math.div($n, 3) {
       & > #{$this-class},
       & > .#{$prefix}one-third {
         width: $width;
       }
-    } @else if $i == $n/4 {
+    } @else if $i == math.div($n, 4) {
       & > #{$this-class},
       & > .#{$prefix}quarter {
         width: $width;
