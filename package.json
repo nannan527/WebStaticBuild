@@ -1,6 +1,6 @@
 {
   "name": "web-static-build",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "web-static-build",
   "main": "bs-config.js",
   "dependencies": {},
@@ -38,6 +38,6 @@
   },
   "author": "Dongyinan",
   "license": "ISC",
-  "_from": "web-static-build@2.0.2",
-  "_resolved": "http://registry.npm.taobao.org/web-static-build/download/web-static-build-2.0.2.tgz"
+  "_from": "web-static-build@2.0.3",
+  "_resolved": "http://registry.npm.taobao.org/web-static-build/download/web-static-build-2.0.3.tgz"
 }

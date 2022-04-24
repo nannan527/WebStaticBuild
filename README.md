@@ -20,3 +20,4 @@
 - jade 和 scss 做了增量编译必须英文命名文件名。
 - jade 和 scss 约定以“\_”开头的文件夹会被 gulp 忽略。
 - js 文件夹下的 vendor 文件夹默认不参与编译直接 copy 至 dist。
+- gulp-imagemin 用 npm 可能安装失败,可以用 cnpm 获取其它代理安装。
